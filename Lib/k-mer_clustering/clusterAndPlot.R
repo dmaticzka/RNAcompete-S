@@ -10,6 +10,7 @@ args <- commandArgs(TRUE)
 infname = args[1]
 outfname = args[2]
 maxclusts = args[3]
+print(maxclusts)
 
 # load all packages
 library(mclust)

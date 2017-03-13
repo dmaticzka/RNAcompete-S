@@ -25,3 +25,22 @@ k-mer_clusters:
 	make plots; \
 	make clusters.txt; \
 	cd ..; \
+
+cluster_ssms:
+	echo $(ID); \
+	cd $(ID); \
+	rm -f Makefile; \
+	ln -sf ../Lib/cluster_ssms/clusterssms.mak Makefile; \
+	make maker; \
+	make doit; \
+	cd ..; \
+
+scan_ssms:
+	echo $(ID); \
+	cd $(ID); \
+	rm -f Makefile; \
+	ln -sf ../Lib/scan_ssms/scanssms.mak Makefile; \
+	make maker; \
+	make doit; \
+	make dist_histograms.pdf; \
+	cd ..; \

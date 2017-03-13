@@ -1,6 +1,6 @@
 ID = $(shell head -2 ../info.tab | tail -1 | cut -f 2)
 MODEL_FILE = model.tab
-NUM_KMERS_TO_CLUSTER = $(shell cut -f 3 model.tab | grep "^0" | wc -l)
+NUM_KMERS_TO_CLUSTER = 200 #$(shell cut -f 3 model.tab | grep "^0" | wc -l)
 MAX_CLUSTERS = $(shell head -2 ../info.tab | tail -1 | cut -f 7)
 
 targets  =  model.tab
@@ -25,12 +25,13 @@ distance_matrix.txt: $(MODEL_FILE)
 	\
 	rm -f k.tmp
 
+
 plots: $(MODEL_FILE) distance_matrix.txt
 	cat $< \
 	| head -$(NUM_KMERS_TO_CLUSTER) \
 	| tr '\t' ' ' \
-	> k.tmp;
-	\
+	> k.tmp; \
+	echo $(MAX_CLUSTERS); \
 	../Lib/k-mer_clustering/clusterAndPlot.R k.tmp $(ID) $(MAX_CLUSTERS)
 
 # clusterAndPlot.R produces labels.txt used here
