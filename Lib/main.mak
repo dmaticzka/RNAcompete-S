@@ -44,3 +44,12 @@ scan_ssms:
 	make doit; \
 	make dist_histograms.pdf; \
 	cd ..; \
+
+final_ssm_assembly: 
+	echo $(ID); \
+	cd $(ID); \
+	rm -f Makefile; \
+	ln -sf ../Lib/final_ssm_assembly/final_ssm_assembly.mak Makefile; \
+	make pfm_assembled_seq_normalized.txt; \
+	make pfm_assembled_struct_normalized.txt; \
+	cd ..; \

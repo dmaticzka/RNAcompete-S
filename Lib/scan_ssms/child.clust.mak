@@ -68,7 +68,7 @@ scan_output_summed.tab: scan_output_seq.tab scan_output_struct.tab
 
 max.txt: scan_output_summed.tab
 	cat scan_output_summed.tab \
-	| row_stats.pl -h 0 -argmax \
+	| ../../Lib/perl_utilities/row_stats.pl -h 0 -argmax \
 	| sed -e 1d \
 	> $@;
 
@@ -77,8 +77,8 @@ diffs.txt: max.txt
 	   paste max.txt ../$(c)/max.txt \
 	   | cut -f 2,4 \
 	   | perl -ne 'chomp; @tabs=split; print $$tabs[1]-$$tabs[0]."\n";' \
-	   | cap.pl diff_$(CLUST_ID)_$(c) \
+	   | ../../Lib/perl_utilities/cap.pl diff_$(CLUST_ID)_$(c) \
 	   > diff_$(c).tmp; \
 	)
 	paste diff_*.tmp > $@;
-	rm -f diff_*.tmp;
+	rm -f diff_*.tmp scan_output_summed.tab scan_output_seq.tab scan_output_struct.tab;

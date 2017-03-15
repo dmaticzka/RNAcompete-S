@@ -44,8 +44,8 @@ clusters.txt: $(MODEL_FILE)
 	paste k.tmp labels.txt \
 	| tr ' ' '\t' \
 	| sort -n -k 4,4 -k 3,3r \
-	| ../Lib/perl/cap.pl kmer_seq,kmer_struct,feature_weight,cluster_ID \
+	| ../Lib/perl_utilities/cap.pl kmer_seq,kmer_struct,feature_weight,cluster_ID \
 	> $@;
 	\
 	mv clusters.txt $(ID)_clusters.txt;
-	rm -f k.tmp labels.txt
+	rm -f k.tmp labels.txt feat.txt

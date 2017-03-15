@@ -33,12 +33,12 @@ clust_sizes.txt:
 	$(foreach c, $(CHILDREN), \
 	   wc -l $(c)/kmers_seq.tmp \
 	   | cut -f 1 -d ' ' \
-	   | add_column.pl - -b -s '$(c)' \
+	   | ../Lib/perl_utilities/add_column.pl - -b -s '$(c)' \
 	   >> clust_sizes.tmp; \
 	)
 	cat clust_sizes.tmp \
 	| sort -nrk 2 \
-	| cap.pl clust_id,num_kmers \
+	| ../Lib/perl_utilities/cap.pl clust_id,num_kmers \
 	> $@;
 	rm -f clust_sizes.tmp;
 	

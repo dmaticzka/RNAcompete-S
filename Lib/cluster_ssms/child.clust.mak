@@ -13,14 +13,14 @@ clean:
 seq_aligned.txt: $(CLUST_FILE)
 	cat $(CLUST_FILE) \
 	| sed -e 1d \
-	| select.pl -k 4 -eq $(CLUST_ID) \
+	| ../../Lib/perl_utilities/select.pl -k 4 -eq $(CLUST_ID) \
 	| cut -f 1 \
 	| tr T U \
 	> kmers_seq.tmp;
 	\
 	cat $(CLUST_FILE) \
 	| sed -e 1d \
-	| select.pl -k 4 -eq $(CLUST_ID) \
+	| ../../Lib/perl_utilities/select.pl -k 4 -eq $(CLUST_ID) \
 	| cut -f 2 \
 	> kmers_struct.tmp;
 	\
@@ -36,7 +36,7 @@ struct_aligned_trimmed.txt: seq_aligned.txt
 pfm_seq.txt: seq_aligned_trimmed.txt $(CLUST_FILE)
 	cat $(CLUST_FILE) \
 	| sed -e 1d \
-	| select.pl -k 4 -eq $(CLUST_ID) \
+	| ../../Lib/perl_utilities/select.pl -k 4 -eq $(CLUST_ID) \
 	| cut -f 3 \
 	> seq_kmers_weights.tmp;
 	\
@@ -45,15 +45,15 @@ pfm_seq.txt: seq_aligned_trimmed.txt $(CLUST_FILE)
 	> seq_kmers_with_weights.tmp;
 	\
 	../../Lib/cluster_ssms/pfm_from_aligned_weighted.pl seq_kmers_with_weights.tmp \
-	| lin.pl \
-	| cap.pl PO,A,C,G,U \
+	| ../../Lib/perl_utilities/lin.pl \
+	| ../../Lib/perl_utilities/cap.pl PO,A,C,G,U \
 	> $@;
 	rm -f seq_aligned_trimmed.txt seq_kmers_weights.tmp seq_kmers_with_weights.tmp
 
 pfm_struct.txt: struct_aligned_trimmed.txt $(CLUST_FILE)
 	cat $(CLUST_FILE) \
 	| sed -e 1d \
-	| select.pl -k 4 -eq $(CLUST_ID) \
+	| ../../Lib/perl_utilities/select.pl -k 4 -eq $(CLUST_ID) \
 	| cut -f 3 \
 	> struct_kmers_weights.tmp;
 	\
@@ -63,7 +63,7 @@ pfm_struct.txt: struct_aligned_trimmed.txt $(CLUST_FILE)
 	> struct_kmers_with_weights.tmp;
 	\
 	../../Lib/cluster_ssms/struct_pfm_from_aligned_weighted.pl struct_kmers_with_weights.tmp \
-	| lin.pl \
-	| cap.pl PO,B,E,H,L,M,R,T \
+	| ../../Lib/perl_utilities/lin.pl \
+	| ../../Lib/perl_utilities/cap.pl PO,B,E,H,L,M,R,T \
 	> $@;
 	rm -f seq_aligned.txt struct_aligned.txt struct_aligned_trimmed.txt struct_kmers_weights.tmp struct_kmers_with_weights.tmp

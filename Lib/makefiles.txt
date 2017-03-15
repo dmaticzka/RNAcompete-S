@@ -1,0 +1,8 @@
+./cluster_ssms/child.clust.mak
+./cluster_ssms/clusterssms.mak
+./final_ssm_assembly/final_ssm_assembly.mak
+./k-mer_clustering/kmerclustering.mak
+./k-mer_model/kmermodel.mak
+./scan_ssms/child.clust.mak
+./scan_ssms/scanssms.mak
+./structure_prediction_annotation/structure.mak

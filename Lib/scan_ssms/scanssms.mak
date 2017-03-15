@@ -49,9 +49,10 @@ dist_histograms.pdf: all_diffs.txt
 	| sed 's/diff_//' \
 	| sed 's/_/_other:/' \
 	| tr _ '\t' \
-	| add_column.pl - -b -s 'key' \
+	| ../Lib/perl_utilities/add_column.pl - -b -s 'key' \
 	| sed 's/\t/:/' \
-	| cap.pl key_motif,other_motif,dist \
+	| ../Lib/perl_utilities/cap.pl key_motif,other_motif,dist \
 	> diff_input.txt;
 	../Lib/scan_ssms/plot_dist_histograms.R diff_input.txt dist_histograms.png $@ all_dist_modes.txt;
 	mv $@ $(ID)_dist_histograms.pdf; \
+	rm -f melted.txt all_diffs.txt dist_histograms.png diff_input.txt;
