@@ -30,7 +30,7 @@ RBP_secondary_structure.txt: RBP_centroid_structs.txt.gz
 	| cut -f 3 \
 	> structs.tmp;
 	\
-	../Lib/structure_prediction_annotation/parse_secondary_structure_v2 structs.tmp annotated.tmp;
+	../Lib/structure_prediction_annotation/parse_secondary_structure structs.tmp annotated.tmp;
 	\
 	zcat $< \
 	| cut -f 1,2 \
@@ -69,7 +69,7 @@ POOL_secondary_structure.txt: POOL_centroid_structs.txt.gz
         | cut -f 3 \
         > structs.tmp;
 	\
-        ../Lib/structure_prediction_annotation/parse_secondary_structure_v2 structs.tmp annotated.tmp;
+        ../Lib/structure_prediction_annotation/parse_secondary_structure structs.tmp annotated.tmp;
 	\
         zcat $< \
         | cut -f 1,2 \
