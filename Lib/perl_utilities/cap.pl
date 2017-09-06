@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use strict;
 
@@ -57,4 +57,3 @@ a field name for the first columns in FILE.
 OPTIONS are:
 
 -f FILE: read the header from FILE.  In this case, no comma-seperated list is expected.
-

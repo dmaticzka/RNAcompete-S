@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 
 use strict;
@@ -98,11 +98,11 @@ sub get_pfm_from_aligned_kmers{
 			}
 		}
 	}
-	
+
 	# convert to probabilities
-	
+
 	#warn join(";",@anTotals),"\n";
-	
+
 	for(my $i=0; $i<$nWidth; $i++){ #position in width
 		foreach my $b (@aAlphabet){
 			if($bSmallSampleCor){
@@ -112,7 +112,7 @@ sub get_pfm_from_aligned_kmers{
 			}
 		}
 	}
-	
+
 	return $rPFM;
 	#print "PFM!\n";
 	#pretty_print_pssm($rPFM);
@@ -137,4 +137,3 @@ Note 2: RNA-based alphabet.
    		Note: incompatible with the -c option
    -c:  use frequency counts instead of fractions (ie dont divide by the number of sites)
    -g:	don't set '-' characters to 0.25 for all bases (allows for trimming later)
-

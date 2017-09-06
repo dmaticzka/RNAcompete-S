@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use strict;
 
@@ -16,7 +16,7 @@ while(@ARGV)
   {
     $delim = shift @ARGV;
   }
-} 
+}
 
 while(<STDIN>)
 {
@@ -39,4 +39,3 @@ TAB is a tab-delimited file.
 OPTIONS are:
 
 -d DELIM: change the delimiter from tab to DELIM
-

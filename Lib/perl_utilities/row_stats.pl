@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use strict;
 use warnings;
@@ -84,7 +84,7 @@ open(FILE, "<$file") or die "ERROR: Can't open file $file for reading!";
 
 my $numNonNumericInHeader = 0;
 my $numItemsInHeader = 0;
-for (my $i = 0; $i < $header_rows; $i++) { 
+for (my $i = 0; $i < $header_rows; $i++) {
     my $line = <FILE>;
     chomp($line);
     my @row = split(/\t/, $line);
@@ -220,7 +220,7 @@ row_stats.pl (-h NUM_HEADER_LINES) (-k KEY_COLUMN) <data file>
 ** by changing the order of options on the command line.
 
    -mean:     Compute mean for each row
-   -median:   Compute the median for each row 
+   -median:   Compute the median for each row
    -quant Q:  Compute the Qth quantile of the vector. E.g. -quant 50 is the same as -median. As another
               example, -quant 90 returns the upper 90th quantile of the vector in each row.
    -abs:      Take the absolute value of each data point (?)

@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 require "libfile.pl";
 
@@ -301,4 +301,3 @@ LEXICAL (TEXT) OPERATORS (these do NOT work as expected on numerical values)
 -llte         Lexical less-than-or-equal-to (compare STRINGS, not numbers)
 -leq          Test for lexical equality (compare STRINGS)
 -lne          Test for lexical inequality (compare STRINGS)
-

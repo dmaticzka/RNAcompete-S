@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use strict;
 
@@ -179,4 +179,3 @@ OPTIONS:
 
 -d: Set the delimiter for both input AND output simultaneously.
     Same as:   -di SOMETHING  -do SOMETHING
-

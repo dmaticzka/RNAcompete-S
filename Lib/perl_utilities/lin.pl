@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 # Numbers lines in a file.
 # Equivalent to:   awk '{ print FNR "\t" $0 }' FILENAME
@@ -54,7 +54,7 @@ open(FILE, $file) or die("Could not open file '$file'");
 
 # Add line numbers to the file.
 while(<FILE>)
-{ 
+{
    chop;
    if(not($after))
      { print STDOUT $neg, "$i", $delim, "$_\n"; }

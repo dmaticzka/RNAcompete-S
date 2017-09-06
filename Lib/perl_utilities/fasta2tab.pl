@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use strict;
 
@@ -26,7 +26,7 @@ while(@ARGV)
   {
     open($fin,$arg) or die("Can't open file '$arg' for reading.");
   }
-  
+
   else
   {
     die("Bad argument '$arg' given.");
@@ -71,6 +71,3 @@ syntax: fasta2tab.pl [OPTIONS] < FASTA
 OPTIONS are:
 
 -d DELIM: change the delimiter from tab to DELIM
-
-
-
