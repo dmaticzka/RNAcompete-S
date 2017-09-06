@@ -1,4 +1,4 @@
-#!/usr/bin/Rscript
+#!/usr/bin/env Rscript
 
 args = commandArgs(TRUE)
 
@@ -9,7 +9,7 @@ outfile = args[3]
 library(ROCR)
 
 pred <- prediction(df$V2, df$V1)
-perf <- performance(pred, measure = "tpr", x.measure = "fpr") 
+perf <- performance(pred, measure = "tpr", x.measure = "fpr")
 
 pdf(outfile)
 plot(perf)

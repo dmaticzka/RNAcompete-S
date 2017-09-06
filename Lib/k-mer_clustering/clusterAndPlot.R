@@ -1,4 +1,4 @@
-#!/usr/bin/Rscript
+#!/usr/bin/env Rscript
 
 ### DEPENDENCIES ####
 # smacof, mclust and calibrate

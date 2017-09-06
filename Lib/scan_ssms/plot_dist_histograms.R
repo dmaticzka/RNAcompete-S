@@ -1,4 +1,4 @@
-#!/usr/bin/Rscript
+#!/usr/bin/env Rscript
 
 args = commandArgs(TRUE)
 
@@ -55,7 +55,7 @@ g = ggplot(df,aes(x=dist)) +
 	geom_histogram() +
 	labs(x = "Distance between first base of key motif and first base other motif\n(key motif upstream of other motif)", y = "Count") +
 	facet_grid(key_motif~other_motif)
-	
+
 plotdata = ggplot_build(g)$data[[1]]
 
 modes$x = 15
