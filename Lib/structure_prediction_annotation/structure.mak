@@ -39,8 +39,8 @@ RBP_secondary_structure.txt: RBP_centroid_structs.txt.gz
 	rm -f structs.tmp annotated.tmp;
 
 RBP_secondary_structure.txt.gz: RBP_secondary_structure.txt
-	gzip $<; \
-	rm -f RBP_centroid_structs.txt.gz;
+	gzip $<; #\
+	#rm -f RBP_centroid_structs.txt.gz;
 
 POOL_centroid_structs.txt: $(POOLFILE)
 	zcat $< \
@@ -78,5 +78,5 @@ POOL_secondary_structure.txt: POOL_centroid_structs.txt.gz
 	rm -f structs.tmp annotated.tmp;
 
 POOL_secondary_structure.txt.gz: POOL_secondary_structure.txt
-	gzip -f $<; \
-	rm -f POOL_centroid_structs.txt.gz;
+	gzip -f $<; #\
+	#rm -f POOL_centroid_structs.txt.gz;
