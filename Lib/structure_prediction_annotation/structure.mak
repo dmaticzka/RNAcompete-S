@@ -62,7 +62,7 @@ POOL_centroid_structs.txt: $(POOLFILE)
 	rm -f seq_dp.ps seq_ss.ps ids.tmp;
 
 POOL_centroid_structs.txt.gz: POOL_centroid_structs.txt
-	gzip $<;
+	gzip -f $<;
 
 POOL_secondary_structure.txt: POOL_centroid_structs.txt.gz
 	zcat $< \
@@ -78,5 +78,5 @@ POOL_secondary_structure.txt: POOL_centroid_structs.txt.gz
 	rm -f structs.tmp annotated.tmp;
 
 POOL_secondary_structure.txt.gz: POOL_secondary_structure.txt
-	gzip $<; \
+	gzip -f $<; \
 	rm -f POOL_centroid_structs.txt.gz;
