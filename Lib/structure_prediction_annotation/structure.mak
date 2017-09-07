@@ -3,7 +3,7 @@ POOL_FILE = $(shell head -2 ../info.tab | tail -1 | cut -f 3)
 RBPFILE = $(addprefix ../, $(RBP_FILE))
 POOLFILE = $(addprefix ../, $(POOL_FILE))
 
-RBP_centroid_structs.txt: $(RBPFILE)
+RBP_centroid_structs.txt.gz: $(RBPFILE)
 	zcat $< \
 	| parallel --pipe -N1000 ../Lib/perl_utilities/fasta2tab.pl \
 	| cut -f 1,2 \
@@ -19,13 +19,10 @@ RBP_centroid_structs.txt: $(RBPFILE)
 	| ../Lib/perl_utilities/fasta2tab.pl \
 	| paste ids.tmp - \
 	| cut -f 1,2,4 \
-	> $@;
+	| gzip > $@;
 	rm -f seq_dp.ps seq_ss.ps ids.tmp;
 
-RBP_centroid_structs.txt.gz: RBP_centroid_structs.txt
-	gzip $<;
-
-RBP_secondary_structure.txt: RBP_centroid_structs.txt.gz
+RBP_secondary_structure.txt.gz: RBP_centroid_structs.txt.gz
 	zcat $< \
 	| cut -f 3 \
 	> structs.tmp;
@@ -35,14 +32,10 @@ RBP_secondary_structure.txt: RBP_centroid_structs.txt.gz
 	zcat $< \
 	| cut -f 1,2 \
 	| paste - annotated.tmp \
-	> $@;
+	| gzip > $@;
 	rm -f structs.tmp annotated.tmp;
 
-RBP_secondary_structure.txt.gz: RBP_secondary_structure.txt
-	gzip $<; #\
-	#rm -f RBP_centroid_structs.txt.gz;
-
-POOL_centroid_structs.txt: $(POOLFILE)
+POOL_centroid_structs.txt.gz: $(POOLFILE)
 	zcat $< \
         | ../Lib/perl_utilities/fasta2tab.pl \
         | cut -f 1,2 \
@@ -58,13 +51,10 @@ POOL_centroid_structs.txt: $(POOLFILE)
         | ../Lib/perl_utilities/fasta2tab.pl \
         | paste ids.tmp - \
         | cut -f 1,2,4 \
-        > $@;
+        | gzip > $@;
 	rm -f seq_dp.ps seq_ss.ps ids.tmp;
 
-POOL_centroid_structs.txt.gz: POOL_centroid_structs.txt
-	gzip -f $<;
-
-POOL_secondary_structure.txt: POOL_centroid_structs.txt.gz
+POOL_secondary_structure.txt.gz: POOL_centroid_structs.txt.gz
 	zcat $< \
         | cut -f 3 \
         > structs.tmp;
@@ -74,9 +64,6 @@ POOL_secondary_structure.txt: POOL_centroid_structs.txt.gz
         zcat $< \
         | cut -f 1,2 \
         | paste - annotated.tmp \
-        > $@;
+        | gzip > $@;
 	rm -f structs.tmp annotated.tmp;
 
-POOL_secondary_structure.txt.gz: POOL_secondary_structure.txt
-	gzip -f $<; #\
-	#rm -f POOL_centroid_structs.txt.gz;
