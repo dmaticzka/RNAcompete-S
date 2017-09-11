@@ -1,7 +1,7 @@
 source /home/maticzkd/local_ncl/miniconda2/envs/rnacompete-s/bin/activate rnacompete-s
 
 # RNAcompete-S reuquires libraries found in RNAcompete project
-export PERL5LIB=~/projects/coop_rbns/RNAcompete/perl5/perl_tools:~/projects/coop_rnbs/RNAcompete/perl5/modules:~/scratch/rnacompete-s/RNAcompete/perl5/modules:$PERL5LIB
+export PERL5LIB=~/projects/coop_rbns/RNAcompete/perl5/perl_tools:~/projects/coop_rnbs/RNAcompete/perl5/modules:~/scratch/rnacompete-s/RNAcompete/perl5/perl_tools:$PERL5LIB
 # path to vw
 export PATH=~/local/:$PATH
 
