@@ -13,7 +13,7 @@ RBP_centroid_structs.txt.gz: $(RBPFILE)
 	| cut -f 2 \
 	| ../Lib/perl_utilities/paste.pl 'seq' - \
 	| ../Lib/perl_utilities/tab2fasta.pl \
-	| parallel --pipe -N1000 RNAfold -p --noPS \
+	| parallel --pipe -N10000 RNAfold -p --noPS \
 	| ../Lib/structure_prediction_annotation/process_centroid_structure.pl \
 	| sed -e 1d \
 	| ../Lib/perl_utilities/fasta2tab.pl \
@@ -45,7 +45,7 @@ POOL_centroid_structs.txt.gz: $(POOLFILE)
         | cut -f 2 \
         | ../Lib/perl_utilities/paste.pl 'seq' - \
         | ../Lib/perl_utilities/tab2fasta.pl \
-        | RNAfold -p --noPS \
+        | parallel --pipe -N10000 RNAfold -p --noPS \
         | ../Lib/structure_prediction_annotation/process_centroid_structure.pl \
         | sed -e 1d \
         | ../Lib/perl_utilities/fasta2tab.pl \
@@ -66,4 +66,3 @@ POOL_secondary_structure.txt.gz: POOL_centroid_structs.txt.gz
         | paste - annotated.tmp \
         | gzip > $@;
 	rm -f structs.tmp annotated.tmp;
-
