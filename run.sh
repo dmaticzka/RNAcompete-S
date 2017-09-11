@@ -1,4 +1,7 @@
-export PERL5LIB=~/projects/coop_rbns/RNAcompete/perl5/perl_tools:~/projects/coop_rnbs/RNAcompete/perl5/modules:~/scratch/rnacompete-s/RNAcompete:$PERL5LIB
+# RNAcompete-S reuquires libraries found in RNAcompete project
+export PERL5LIB=~/projects/coop_rbns/RNAcompete/perl5/perl_tools:~/projects/coop_rnbs/RNAcompete/perl5/modules:~/scratch/rnacompete-s/RNAcompete/perl5/modules:$PERL5LIB
+# path to vw
+export PATH=~/local/:$PATH
 
 make -f Lib/main.mak
 make -f Lib/main.mak k-mer_model
