@@ -16,17 +16,24 @@ shuffled_RBP_seqs.tab:
 shuffled_pool_seqs.tab:
 	zcat $(POOL_FILE) | shuf > $@
 
-train_RBP_vw_input.txt: shuffled_RBP_seqs.tab
-	head -n $(NUM_TRAIN_SEQS) $< \
-	| ../Lib/k-mer_model/make_seq_struct_vw_input.pl - 1 > $@
+# train_RBP_vw_input.txt: shuffled_RBP_seqs.tab
+# 	head -n $(NUM_TRAIN_SEQS) $< \
+# 	| ../Lib/k-mer_model/make_seq_struct_vw_input.pl - 1 > $@
 
-train_pool_vw_input.txt: shuffled_pool_seqs.tab
-	head -n $(NUM_TRAIN_SEQS) $< \
-	| ../Lib/k-mer_model/make_seq_struct_vw_input.pl - -1 > $@
+# train_pool_vw_input.txt: shuffled_pool_seqs.tab
+# 	head -n $(NUM_TRAIN_SEQS) $< \
+# 	| ../Lib/k-mer_model/make_seq_struct_vw_input.pl - -1 > $@
 
-train_vw_input.txt.gz: train_RBP_vw_input.txt train_pool_vw_input.txt
-	cat $^ | gzip - > $@
-	rm $^
+# train_vw_input.txt.gz: train_RBP_vw_input.txt train_pool_vw_input.txt
+# 	cat $^ | gzip - > $@
+# 	rm $^
+# 	make valid_vw_input.txt.gz
+
+train_vw_input.txt.gz: shuffled_RBP_seqs.tab shuffled_pool_seqs.tab
+	( head -n $(NUM_TRAIN_SEQS) shuffled_RBP_seqs.tab \
+	| ../Lib/k-mer_model/make_seq_struct_vw_input.pl - 1; \
+	head -n $(NUM_TRAIN_SEQS) shuffled_pool_seqs.tab \
+	| ../Lib/k-mer_model/make_seq_struct_vw_input.pl - -1 ) | gzip > $@
 	make valid_vw_input.txt.gz
 
 # valid_RBP_vw_input.txt: shuffled_RBP_seqs.tab
