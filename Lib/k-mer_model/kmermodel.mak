@@ -29,6 +29,7 @@ shuffled_pool_seqs.tab:
 # 	rm $^
 # 	make valid_vw_input.txt.gz
 
+# replaces three rules above to save disk space
 train_vw_input.txt.gz: shuffled_RBP_seqs.tab shuffled_pool_seqs.tab
 	( head -n $(NUM_TRAIN_SEQS) shuffled_RBP_seqs.tab \
 	| ../Lib/k-mer_model/make_seq_struct_vw_input.pl - 1; \
@@ -50,6 +51,7 @@ train_vw_input.txt.gz: shuffled_RBP_seqs.tab shuffled_pool_seqs.tab
 # 	rm shuffled_RBP_seqs.tab
 # 	rm shuffled_pool_seqs.tab
 
+# replaces three rules above to save disk space
 valid_vw_input.txt.gz: shuffled_RBP_seqs.tab shuffled_pool_seqs.tab
 	( tail -n $(NUM_VALID_SEQS) shuffled_RBP_seqs.tab \
         | ../Lib/k-mer_model/make_seq_struct_vw_input.pl - 1; \
