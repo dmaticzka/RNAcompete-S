@@ -42,10 +42,10 @@ scan_ssms:
 	ln -sf ../Lib/scan_ssms/scanssms.mak Makefile; \
 	make maker; \
 	make doit; \
-	make dist_histograms.pdf; \
+	make dist_histograms.pdf -B; \
 	cd ..; \
 
-final_ssm_assembly: 
+final_ssm_assembly:
 	echo $(ID); \
 	cd $(ID); \
 	rm -f Makefile; \
